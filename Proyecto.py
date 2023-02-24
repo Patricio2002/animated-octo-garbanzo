@@ -1,21 +1,27 @@
-#Ideas jeje
-class producto():                           #Clase padre
-    def __init__(self, Producto, Marca):
-        pass
+from admin import Administrador
+from productos import *
 
-class Papas(producto):          
+productos =  {}
+f = open('productos.csv', "r")
+
+def mostrarProductos():
     pass
 
-class maquinaExpendedora():     #Clase principal
-    elemento = producto("Papas", "Sabritas")
-    def __init__(elemento):
-        pass
+def seleccionarProducto():
+    pass
 
-    
+def productosTipo():
+    pass
 
-#crear clase padre "producto" para usarse en clases hijas como refresco, papas, etc.
-#que contenga marca, sabor, etc
-
-#diccionario para simular tablero de la maquina expendedora 
-#hacer lista de productos
+def infoProductos():
+    pass
  
+
+def main():
+    opcion = int(input("¿Qué es lo que desea hacer?\n\
+1. Seleccionar producto\n\
+2. Almacenar nuevo producto\n\
+3. Enlistar total de productos de un tipo\n\
+4. Enlistar todos los productos\n\
+5. Ver informacion de un producto\n\
+    "))
