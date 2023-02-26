@@ -1,5 +1,5 @@
 #Ideas jeje
-class producto():                           #Clase padre
+class Producto():                           #Clase padre
     def __init__(self,clave,  marca, cantidad, costo, producto):
         self.clave = clave
         self.producto = producto
@@ -10,7 +10,7 @@ class producto():                           #Clase padre
     def  revisarInfo(self):
         print(f"producto: {self.producto}\nmarca: {self.marca}\ncantidad en existencia:{self.cantidad}")
 
-class Papas(producto):          
+class Papas(Producto):          
     def __init__(self,clave, marca, cantidad, costo , tipo = "papas"):
         self.clave = clave
         self.marca = marca
@@ -21,7 +21,7 @@ class Papas(producto):
         super().__init__()
 
 
-class maquinaExpendedora():     #Clase principal
-    elemento = producto("Papas", "Sabritas")
-    def __init__(elemento):
-        pass
+#class MaquinaExpendedora():     #Clase principal
+ #   elemento = Producto("Papas", "Sabritas")
+  #  def __init__(elemento):
+    #    pass
