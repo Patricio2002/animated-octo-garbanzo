@@ -7,21 +7,42 @@ class Producto():                           #Clase padre
         self.costo = costo
         self.cantidad = cantidad
         
-    def  revisarInfo(self):
+    def  infoGeneral(self):
         print(f"producto: {self.producto}\nmarca: {self.marca}\ncantidad en existencia:{self.cantidad}")
+    
 
-class Papas(Producto):          
-    def __init__(self,clave, marca, cantidad, costo , tipo = "papas"):
+class Botanas(Producto):          
+    def __init__(self,clave, marca, cantidad, costo ,sabor, gramos, tipo = "botana"):
         self.clave = clave
         self.marca = marca
         self.cantidad = cantidad
         self.costo = costo
+        self.sabor = sabor
+        self.gramos = gramos
         self._tipo = tipo
 
         super().__init__()
 
+class bebida(Producto):          
+    def __init__(self,clave, marca, cantidad, costo ,sabor, mililitros,  tipo = "bebida"):
+        self.clave = clave
+        self.marca = marca
+        self.cantidad = cantidad
+        self.costo = costo
+        self.sabor = sabor
+        self.mililitros = mililitros
+        self._tipo = tipo
 
-#class MaquinaExpendedora():     #Clase principal
- #   elemento = Producto("Papas", "Sabritas")
-  #  def __init__(elemento):
-    #    pass
+        super().__init__()
+
+class Dulces(Producto):          
+    def __init__(self,clave, marca, cantidad, costo , sabores ,gramos, tipo = "dulces"):
+        self.clave = clave
+        self.marca = marca
+        self.cantidad = cantidad
+        self.costo = costo
+        self.sabores = sabores
+        self.gramos =  gramos
+        self._tipo = tipo
+
+        super().__init__()
