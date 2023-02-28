@@ -1,20 +1,24 @@
 #Ideas jeje
 class Producto():                           #Clase padre
-    def __init__(self,clave,  marca, cantidad, costo, producto):
+    def __init__(self,clave,  nombre, cantidad, costo, producto):
         self.clave = clave
         self.producto = producto
-        self.marca = marca
+        self.nombre = nombre
         self.costo = costo
         self.cantidad = cantidad
         
     def  infoGeneral(self):
-        print(f"producto: {self.producto}\nmarca: {self.marca}\ncantidad en existencia:{self.cantidad}")
+        print(f"clave: {self.clave}\n\
+producto: {self.producto}\n\
+nombre: {self.nombre}\n\
+costo: {self.costo}\n\
+cantidad en existencia:{self.cantidad}")
     
 
 class Botanas(Producto):          
-    def __init__(self,clave, marca, cantidad, costo ,sabor, gramos, tipo = "botana"):
+    def __init__(self,clave, nombre, cantidad, costo ,sabor, gramos, tipo = "botana"):
         self.clave = clave
-        self.marca = marca
+        self.nombre = nombre
         self.cantidad = cantidad
         self.costo = costo
         self.sabor = sabor
@@ -22,11 +26,20 @@ class Botanas(Producto):
         self._tipo = tipo
 
         super().__init__()
+    
+    def infoEspecifica(self):
+        print(f"clave: {self.clave}\n\
+producto: {self.producto}\n\
+nombre: {self.nombre}\n\
+cantidad en existencia:{self.cantidad}\n\
+costo:{self.costo}\n\
+sabor: {self.sabor}\n\
+gramos: {self.gramos}")
 
 class bebida(Producto):          
-    def __init__(self,clave, marca, cantidad, costo ,sabor, mililitros,  tipo = "bebida"):
+    def __init__(self,clave, nombre, cantidad, costo ,sabor, mililitros,  tipo = "bebida"):
         self.clave = clave
-        self.marca = marca
+        self.nombre = nombre
         self.cantidad = cantidad
         self.costo = costo
         self.sabor = sabor
@@ -36,9 +49,9 @@ class bebida(Producto):
         super().__init__()
 
 class Dulces(Producto):          
-    def __init__(self,clave, marca, cantidad, costo , sabores ,gramos, tipo = "dulces"):
+    def __init__(self,clave, nombre, cantidad, costo , sabores ,gramos, tipo = "dulce"):
         self.clave = clave
-        self.marca = marca
+        self.nombre = nombre
         self.cantidad = cantidad
         self.costo = costo
         self.sabores = sabores
