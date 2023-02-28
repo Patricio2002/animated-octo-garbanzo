@@ -70,7 +70,7 @@ def iniciarSesion():
             crearAdmin()
         elif opcion == 5:
             #main()
-            print("ola")
+            print("hola")
     else:
         print("Contraseña o usuario erroneos")
 
