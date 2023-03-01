@@ -2,16 +2,14 @@ from admin import *
 from funcionesAdmin import *
 from funcionesAdmin import iniciarSesion
 #from productos import *
-validar = 0
+maquina = MaquinaExpendedora()
 
-productos =  {}
-f = open('productos.csv', "r")
 
 def mostrarProductos():
     pass
 
 def seleccionarProducto():
-    pass
+    maquina.comprarProductos()
 
 def productosTipo():
     pass
@@ -24,20 +22,18 @@ def infoProductos():
  
 
 def main():
-    maquina = MaquinaExpendedora()
     while 1:
         maquina.mostrarProductos()
         opcion = int(input("¿Qué es lo que desea hacer?\n\
   1. Seleccionar producto\n\
-  2. Enlistar total de productos de un tipo\n\
-  3. Enlistar todos los productos\n\
-  4. Ver informacion de un producto\n\
-  5. Iniciar sesion: Administrador\n\
-  6. Salir\n"))
-     
-        if opcion == 5:
+  2. Ver informacion de un producto\n\
+  3. Iniciar sesion: Administrador\n\
+  4. Salir\n"))
+        if opcion == 1:
+            seleccionarProducto()
+        elif opcion == 3:
             iniciarSesion()
-        elif opcion == 6:
+        elif opcion == 4:
             print("Gracias por haber utilizado la maquina expendedora 'Kunkito'")
             break
 

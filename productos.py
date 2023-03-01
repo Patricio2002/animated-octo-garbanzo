@@ -13,6 +13,12 @@ class MaquinaExpendedora():
                 if i%3 == 0:
                     print("")
         print("\n\n")
+    
+    def comprarProductos(self, clave):
+        with open('productos.csv', 'r') as f:
+            for linea in f.readlines():
+                linea2 = linea.split(',')
+            
                           
     
 class Producto(MaquinaExpendedora):                           #Clase padre
