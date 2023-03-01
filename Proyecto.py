@@ -1,6 +1,6 @@
 from admin import *
 from funcionesAdmin import *
-from funcionesAdmin import inciarSesion
+from funcionesAdmin import iniciarSesion
 #from productos import *
 validar = 0
 
