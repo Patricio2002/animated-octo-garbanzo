@@ -4,6 +4,7 @@ from admin import Administrador
 
 product = []
 
+#Esta clase 
 def añadirProducto():
     global product
     tipo = input("¿Que clase de producto va a ingresar?\t1.botana\t2.bebida\t3.dulce: ")
