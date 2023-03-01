@@ -24,7 +24,9 @@ def infoProductos():
  
 
 def main():
+    maquina = MaquinaExpendedora()
     while 1:
+        maquina.mostrarProductos()
         opcion = int(input("¿Qué es lo que desea hacer?\n\
   1. Seleccionar producto\n\
   2. Enlistar total de productos de un tipo\n\
