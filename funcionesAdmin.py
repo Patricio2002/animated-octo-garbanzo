@@ -4,6 +4,7 @@ from admin import Administrador
 
 product = []
 
+#Esta clase 
 def añadirProducto():
     global product
     with open("productos.csv", "r") as f:
