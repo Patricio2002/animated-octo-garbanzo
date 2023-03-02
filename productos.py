@@ -1,38 +1,23 @@
 #Ideas jeje
+listaClases = []
+
 class MaquinaExpendedora():
     def __init__(self) -> None:
         pass
     def mostrarProductos(self):
-        print("\n\t-Maquina expendedora krunkito-\n\n")
+        lista = []
+        print("\n\t-Maquina expendedora krunkito-\n")
         with open('productos.csv', 'r') as f:
             i=0
             for linea in f.readlines():
-                i+=1
-                linea2 = linea.split(",")
-                print(f"   {linea2[0]}-{linea2[1]}:{linea2[4]}. ${linea2[3]}", end='')
-                if i%3 == 0:
-                    print("")
-        print("\n\n")
-    
-    def comprarProductos(self, clave):
-        todos = []
-        with open('productos.csv', 'r') as f:
-            for linea in f.readlines():
-                linea2 = linea.split(',')
-                if clave  == int(linea2[0]):
-                    linea2[2] = int(linea2[2])-1
                 
-                todos.append(linea2)
-        with open('productos.csv','w') as f:
-            for item in todos:
-                for i in range(len(item)):
-                    f.write(f"{str(item[i])}")
-                    if(i<len(item)-1):
-                        f.write(',')
-                #f.write('\n')
+                linea2 = linea.split(",")
+                clase = linea2[6].rstrip('\n')
+                lista.append(globals()[clase](linea2[0], linea2[1], linea2[2], linea2[3],linea2[4],linea2[5]))
+                i+=1
 
-            
-                          
+        print("\n\n")
+        return lista                      
     
 class Producto():                           #Clase padre
     def __init__(self,clave,  nombre, cantidad, costo):
@@ -50,8 +35,11 @@ cantidad en existencia:{self.cantidad}")
         with open('productos.csv', 'a+') as f:
             f.write(f"\n{self.clave},{self.nombre},{self.cantidad},{self.costo}")
     
-class Botanas(Producto):          
-    def __init__(self,clave, nombre, cantidad, costo ,sabor, gramos, tipo = "botana"):
+    def comprar(self):
+        self.cantidad = int(self.cantidad)-1
+    
+class Botana(Producto):          
+    def __init__(self,clave, nombre, cantidad, costo ,sabor, gramos, tipo = "Botana"):
         self.clave = clave
         self.nombre = nombre
         self.cantidad = cantidad
@@ -65,7 +53,7 @@ class Botanas(Producto):
 
     def infoEspecifica(self) -> None:
         print(f"clave: {self.clave}\n\
-producto: {self.producto}\n\
+producto: {self._tipo}\n\
 nombre: {self.nombre}\n\
 cantidad en existencia:{self.cantidad}\n\
 costo:{self.costo}\n\
@@ -77,8 +65,8 @@ gramos: {self.gramos}")
         with open('productos.csv', 'a+') as f:
             f.write(f",{self.sabor},{self.gramos},{self._tipo}")
 
-class bebida(Producto):          
-    def __init__(self,clave, nombre, cantidad, costo ,sabor, mililitros,  tipo = "bebida"):
+class Bebida(Producto):          
+    def __init__(self,clave, nombre, cantidad, costo ,sabor, mililitros,  tipo = "Bebida"):
         self.clave = clave
         self.nombre = nombre
         self.cantidad = cantidad
@@ -91,7 +79,7 @@ class bebida(Producto):
 
     def infoEspecifica(self):
         print(f"clave: {self.clave}\n\
-producto: {self.producto}\n\
+producto: {self._tipo}\n\
 nombre: {self.nombre}\n\
 cantidad en existencia:{self.cantidad}\n\
 costo:{self.costo}\n\
@@ -104,7 +92,7 @@ mililitros: {self.mililitros}")
             f.write(f",{self.sabor},{self.gramos},{self.tipo}")
 
 class Dulces(Producto):          
-    def __init__(self,clave, nombre, cantidad, costo , sabores ,gramos, tipo = "dulce"):
+    def __init__(self,clave, nombre, cantidad, costo , sabores ,gramos, tipo = "Dulces"):
         self.clave = clave
         self.nombre = nombre
         self.cantidad = cantidad
@@ -117,7 +105,7 @@ class Dulces(Producto):
 
     def infoEspecifica(self):
         print(f"clave: {self.clave}\n\
-producto: {self.producto}\n\
+producto: {self._tipo}\n\
 nombre: {self.nombre}\n\
 cantidad en existencia:{self.cantidad}\n\
 costo:{self.costo}\n\

@@ -4,34 +4,41 @@ from funcionesAdmin import iniciarSesion
 #from productos import *
 maquina = MaquinaExpendedora()
 
-        
-def mostrarProductos():
-    pass
-
-def seleccionarProducto():
+def seleccionarProducto(lista):
     clave = input("Ingrese la clave del producto que desea comprar: ")
-    maquina.comprarProductos(int(clave))
+    clave = int(clave)-1
+    if(clave < len(lista)):
+        print(lista[clave].cantidad)
+        lista[clave].comprar()
+        print(lista[clave].cantidad)
+    else:
+        print('No se reconoce esa clave')
 
 def productosTipo():
     pass
 
-def infoProductos():
-    pass
-
-    #if validar:
-    #   print(f"Bienvenido {usuario}")
+def infoProducto(lista):
+    clave = input("Ingrese la clave del producto del que desa saber mas información: ")
+    clave = int(clave)-1
+    if(clave < len(lista)):
+        print(lista[clave].infoEspecifica())
+    else:
+        print('No se reconoce esa clave')
  
 
 def main():
     while 1:
-        maquina.mostrarProductos()
+        lista = maquina.mostrarProductos()
+        #maquina.mostrarProductos()
         opcion = int(input("¿Qué es lo que desea hacer?\n\
   1. Seleccionar producto\n\
   2. Ver informacion de un producto\n\
   3. Modo Administrador\n\
   4. Salir\n"))
         if opcion == 1:
-            seleccionarProducto()
+            seleccionarProducto(lista)
+        elif opcion == 2:
+            infoProducto(lista)
         elif opcion == 3:
             iniciarSesion()
         elif opcion == 4:
