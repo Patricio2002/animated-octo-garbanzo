@@ -1,8 +1,4 @@
 #Ideas jeje
-<<<<<<< HEAD
-=======
- 
->>>>>>> 4ce6eec4f5b77fb3325adb939ec88745bbdf4e05
 class MaquinaExpendedora():
     def __init__(self) -> None:
         pass
@@ -41,15 +37,6 @@ class MaquinaExpendedora():
 class Producto():                           #Clase padre
     def __init__(self,clave,  nombre, cantidad, costo):
         self.clave = clave
-<<<<<<< HEAD
-=======
-
-class Producto():                           #Clase padre
-    def __init__(self,clave,  nombre, cantidad, costo, producto):
-        self.clave = clave                      #Se inicializan los atributos del objeto
-        self.producto = producto
-
->>>>>>> 4ce6eec4f5b77fb3325adb939ec88745bbdf4e05
         self.nombre = nombre
         self.costo = costo
         self.cantidad = cantidad
@@ -59,23 +46,10 @@ class Producto():                           #Clase padre
 nombre: {self.nombre}\n\
 costo: {self.costo}\n\
 cantidad en existencia:{self.cantidad}")
-<<<<<<< HEAD
-=======
-
->>>>>>> 4ce6eec4f5b77fb3325adb939ec88745bbdf4e05
     def añadirProductoGen(self):
         with open('productos.csv', 'a+') as f:
             f.write(f"\n{self.clave},{self.nombre},{self.cantidad},{self.costo}")
     
-<<<<<<< HEAD
-=======
-
-
-
-#Clases hijas
-
-
->>>>>>> 4ce6eec4f5b77fb3325adb939ec88745bbdf4e05
 class Botanas(Producto):          
     def __init__(self,clave, nombre, cantidad, costo ,sabor, gramos, tipo = "botana"):
         self.clave = clave
@@ -91,7 +65,6 @@ class Botanas(Producto):
 
     def infoEspecifica(self) -> None:
         print(f"clave: {self.clave}\n\
-<<<<<<< HEAD
 producto: {self.producto}\n\
 nombre: {self.nombre}\n\
 cantidad en existencia:{self.cantidad}\n\
@@ -103,14 +76,6 @@ gramos: {self.gramos}")
         self.añadirProductoGen()
         with open('productos.csv', 'a+') as f:
             f.write(f",{self.sabor},{self.gramos},{self._tipo}")
-=======
-        producto: {self.producto}\n\
-        nombre: {self.nombre}\n\
-        cantidad en existencia:{self.cantidad}\n\
-        costo:{self.costo}\n\
-        sabor: {self.sabor}\n\
-        gramos: {self.gramos}")     #Se muestran atributos
->>>>>>> 4ce6eec4f5b77fb3325adb939ec88745bbdf4e05
 
 class bebida(Producto):          
     def __init__(self,clave, nombre, cantidad, costo ,sabor, mililitros,  tipo = "bebida"):
