@@ -28,7 +28,7 @@ def main():
         opcion = int(input("¿Qué es lo que desea hacer?\n\
   1. Seleccionar producto\n\
   2. Ver informacion de un producto\n\
-  3. Iniciar sesion: Administrador\n\
+  3. Modo Administrador\n\
   4. Salir\n"))
         if opcion == 1:
             seleccionarProducto()
