@@ -41,7 +41,7 @@ class Producto():                           #Clase padre
         self.costo = costo
         self.cantidad = cantidad
         
-    def infoGeneral(self):                 #Se muestran los atributos del objeto
+    def  infoGeneral(self):                 #Se muestran los atributos del objeto
         print(f"clave: {self.clave}\n\
 nombre: {self.nombre}\n\
 costo: {self.costo}\n\
