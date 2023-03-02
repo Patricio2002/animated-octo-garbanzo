@@ -1,5 +1,4 @@
 #Ideas jeje
-<<<<<<< HEAD
 class MaquinaExpendedora():
     def __init__(self) -> None:
         pass
@@ -16,21 +15,28 @@ class MaquinaExpendedora():
         print("\n\n")
     
     def comprarProductos(self, clave):
+        todos = []
         with open('productos.csv', 'r') as f:
             for linea in f.readlines():
                 linea2 = linea.split(',')
+                if clave  == int(linea2[0]):
+                    linea2[2] = int(linea2[2])-1
+                
+                todos.append(linea2)
+        with open('productos.csv','w') as f:
+            for item in todos:
+                for i in range(len(item)):
+                    f.write(f"{str(item[i])}")
+                    if(i<len(item)-1):
+                        f.write(',')
+                #f.write('\n')
+
             
                           
     
-class Producto(MaquinaExpendedora):                           #Clase padre
+class Producto():                           #Clase padre
     def __init__(self,clave,  nombre, cantidad, costo):
         self.clave = clave
-=======
-class Producto():                           #Clase padre
-    def __init__(self,clave,  nombre, cantidad, costo, producto):
-        self.clave = clave                      #Se inicializan los atributos del objeto
-        self.producto = producto
->>>>>>> 3d6ee076a0a2e7b7eb6b65b7e205c99188d9afc5
         self.nombre = nombre
         self.costo = costo
         self.cantidad = cantidad
@@ -40,17 +46,10 @@ class Producto():                           #Clase padre
 nombre: {self.nombre}\n\
 costo: {self.costo}\n\
 cantidad en existencia:{self.cantidad}")
-<<<<<<< HEAD
     def añadirProductoGen(self):
         with open('productos.csv', 'a+') as f:
             f.write(f"\n{self.clave},{self.nombre},{self.cantidad},{self.costo}")
     
-=======
-
-
-#Clases hijas
-
->>>>>>> 3d6ee076a0a2e7b7eb6b65b7e205c99188d9afc5
 class Botanas(Producto):          
     def __init__(self,clave, nombre, cantidad, costo ,sabor, gramos, tipo = "botana"):
         self.clave = clave
@@ -71,16 +70,12 @@ nombre: {self.nombre}\n\
 cantidad en existencia:{self.cantidad}\n\
 costo:{self.costo}\n\
 sabor: {self.sabor}\n\
-<<<<<<< HEAD
 gramos: {self.gramos}")
         
     def añadirProducto(self):
         self.añadirProductoGen()
         with open('productos.csv', 'a+') as f:
             f.write(f",{self.sabor},{self.gramos},{self._tipo}")
-=======
-gramos: {self.gramos}")     #Se muestran atributos
->>>>>>> 3d6ee076a0a2e7b7eb6b65b7e205c99188d9afc5
 
 class bebida(Producto):          
     def __init__(self,clave, nombre, cantidad, costo ,sabor, mililitros,  tipo = "bebida"):
