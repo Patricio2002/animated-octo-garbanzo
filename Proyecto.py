@@ -4,13 +4,14 @@ from funcionesAdmin import iniciarSesion
 #from productos import *
 maquina = MaquinaExpendedora()
 
+
 def seleccionarProducto(lista):
+
     clave = input("Ingrese la clave del producto que desea comprar: ")
     clave = int(clave)-1
     if(clave < len(lista)):
-        print(lista[clave].cantidad)
         lista[clave].comprar()
-        print(lista[clave].cantidad)
+        actualizarDatos(lista)
     else:
         print('No se reconoce esa clave')
 
@@ -21,15 +22,15 @@ def infoProducto(lista):
     clave = input("Ingrese la clave del producto del que desa saber mas información: ")
     clave = int(clave)-1
     if(clave < len(lista)):
-        print(lista[clave].infoEspecifica())
+        info = lista[clave].infoEspecifica()
+        print(info)
     else:
         print('No se reconoce esa clave')
  
 
 def main():
     while 1:
-        lista = maquina.mostrarProductos()
-        #maquina.mostrarProductos()
+        lista = maquina.mostrarProductos()    
         opcion = int(input("¿Qué es lo que desea hacer?\n\
   1. Seleccionar producto\n\
   2. Ver informacion de un producto\n\
@@ -40,7 +41,7 @@ def main():
         elif opcion == 2:
             infoProducto(lista)
         elif opcion == 3:
-            iniciarSesion()
+            iniciarSesion(lista)
         elif opcion == 4:
             print("Gracias por haber utilizado la maquina expendedora 'Kunkito'")
             break

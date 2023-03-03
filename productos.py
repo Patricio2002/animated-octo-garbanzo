@@ -1,6 +1,7 @@
 #Ideas jeje
 listaClases = []
 
+
 class MaquinaExpendedora():
     def __init__(self) -> None:
         pass
@@ -17,7 +18,11 @@ class MaquinaExpendedora():
                 i+=1
 
         print("\n\n")
-        return lista                      
+        return lista  
+    def actualizarCSV(self, lista):
+        with open('productos.csv', "w") as f:
+            for i in lista:
+                f.write(f"{i}\n")
     
 class Producto():                           #Clase padre
     def __init__(self,clave,  nombre, cantidad, costo):
@@ -34,6 +39,9 @@ cantidad en existencia:{self.cantidad}")
     def añadirProductoGen(self):
         with open('productos.csv', 'a+') as f:
             f.write(f"\n{self.clave},{self.nombre},{self.cantidad},{self.costo}")
+    
+    def retornarInfo(self):
+        pass
     
     def comprar(self):
         self.cantidad = int(self.cantidad)-1
@@ -65,6 +73,9 @@ gramos: {self.gramos}")
         with open('productos.csv', 'a+') as f:
             f.write(f",{self.sabor},{self.gramos},{self._tipo}")
 
+    def retornarInfo(self):
+        return f"{self.clave},{self.nombre},{self.cantidad},{self.costo},{self.sabor},{self.gramos},{self._tipo}"
+
 class Bebida(Producto):          
     def __init__(self,clave, nombre, cantidad, costo ,sabor, mililitros,  tipo = "Bebida"):
         self.clave = clave
@@ -90,6 +101,10 @@ mililitros: {self.mililitros}")
         self.añadirProductoGen()
         with open('productos.csv', 'a+') as f:
             f.write(f",{self.sabor},{self.gramos},{self.tipo}")
+    def retornarInfo(self):
+
+        return f"{self.clave},{self.nombre},{self.cantidad},{self.costo},{self.sabor},{self.mililitros},{self._tipo}"
+        
 
 class Dulces(Producto):          
     def __init__(self,clave, nombre, cantidad, costo , sabores ,gramos, tipo = "Dulces"):
@@ -116,3 +131,6 @@ gramos: {self.gramos}")
         self.añadirProductoGen()
         with open('productos.csv', 'a+') as f:
             f.write(f",{self.sabor},{self.gramos},{self._tipo}")
+
+    def retornarInfo(self):
+        return f"{self.clave},{self.nombre},{self.cantidad},{self.costo},{self.sabor},{self.gramos},{self._tipo}"
