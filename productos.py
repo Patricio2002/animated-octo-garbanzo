@@ -9,10 +9,13 @@ class MaquinaExpendedora():
         lista = []
         print("\n\t-Maquina expendedora krunkito-\n")
         with open('productos.csv', 'r') as f:
-            i=0
+            i=1
             for linea in f.readlines():
                 
                 linea2 = linea.split(",")
+                print(f"{linea2[0]}.{linea2[1]}: ${linea2[3]}", end="   ")
+                if i%3 == 0:
+                    print("\n")
                 clase = linea2[6].rstrip('\n')
                 lista.append(globals()[clase](linea2[0], linea2[1], linea2[2], linea2[3],linea2[4],linea2[5]))
                 i+=1

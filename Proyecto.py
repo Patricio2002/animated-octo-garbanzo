@@ -3,7 +3,7 @@ from funcionesAdmin import *
 from funcionesAdmin import iniciarSesion
 import time
 maquina = MaquinaExpendedora()
-
+from excepciones import *
 
 def dispensando():
 
@@ -22,27 +22,40 @@ def mostrarProductos():
     pass
 
 def seleccionarProducto(lista):
-
-    clave = input("Ingrese la clave del producto que desea comprar: ")
-    clave = int(clave)-1
-    if(clave < len(lista)):
+    try:
+        clave = int(input("Ingrese la clave del producto que desea comprar: "))
+        verifClave(lista,clave)
+    except ValueError: 
+            print("\nIntroduzca solo numeros!!!\n")
+    except ClaveDesconocida :
+        print("\nIngrese una clave conocida\n")
+    except IndexError:
+        print("\nIngrese una clave conocida\n")
+    else: 
+        clave = int(clave)-1
         lista[clave].comprar()
         actualizarDatos(lista)
         dispensando()
-    else:
-        print('No se reconoce esa clave')
+
 
 def productosTipo():
     pass
 
 def infoProducto(lista):
-    clave = input("Ingrese la clave del producto del que desa saber mas información: ")
-    clave = int(clave)-1
-    if(clave < len(lista)):
+    try:
+        clave = int(input("Ingrese la clave del producto del que desa saber mas información: "))
+        verifClave(lista,clave)
+    except ValueError: 
+            print("\nIntroduzca solo numeros!!!\n")
+    except ClaveDesconocida :
+        print("\nIngrese una clave conocida\n")
+    except IndexError:
+        print("\nIngrese una clave conocida\n")
+    else:
+        clave = int(clave)-1
         info = lista[clave].infoEspecifica()
         print(info)
-    else:
-        print('No se reconoce esa clave')
+
  
 
 def main():
@@ -54,6 +67,9 @@ def main():
   2. Ver informacion de un producto\n\
   3. Modo Administrador\n\
   4. Salir\n"))
+        except ValueError: 
+            print("\nIntroduzca solo numeros!!!\n")
+        else:    
             if opcion == 1:
                 seleccionarProducto(lista)
             elif opcion == 2:
@@ -63,8 +79,7 @@ def main():
             elif opcion == 4:
                 print("Gracias por haber utilizado la maquina expendedora 'Kunkito'")
                 break
-        except ValueError:
-        
-         print("\nIntroduzca solo numeros!!!")
 
+
+main()
 
