@@ -1,7 +1,7 @@
 #Ideas jeje
 listaClases = []
 
-
+#Verificar cuando la máquina se quede sin algún producto
 class MaquinaExpendedora():
     def __init__(self) -> None:
         pass
