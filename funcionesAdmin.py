@@ -1,10 +1,15 @@
 from productos import *
 from admin import Administrador
-#from Proyecto import main
 
+maquina = MaquinaExpendedora()
 product = []
 
-#Esta clase 
+def actualizarDatos(lista):
+    act = []
+    for i in range(len(lista)):
+        act.append(lista[i].retornarInfo())
+    maquina.actualizarCSV(act)
+
 def añadirProducto():
     global product
     tipo = input("¿Que clase de producto va a ingresar?\t1.botana\t2.bebida\t3.dulce: ")
@@ -13,15 +18,15 @@ def añadirProducto():
         cantidad= int(input("Ingrese la cantidad de unidades del producto: "))
         precio = int(input("Ingrese el  precio del producto: "))
         if int(tipo) == 1:
-            tipo = "botana"
+            tipo = "Botana"
             gramos = int(input("Ingrese la cantidad de  gramos que contiene el producto: "))
             sabor = input("Ingrese el sabor del producto: ")
         elif int(tipo) == 2:
-            tipo = "bebida"
+            tipo = "Bebida"
             gramos = int(input("Ingrese los mililitros que contiene el producto: "))
             sabor = input("Ingrese el sabor del producto: ")
         else:
-            tipo = "dulce"
+            tipo = "Dulces"
             gramos = int(input("Ingrese la cantidad de  gramos que contiene el producto: "))
             sabor = []
             while 1:
@@ -44,13 +49,20 @@ def añadirProducto():
     with open('productos.csv', 'a+') as f:
         f.write(f"\n{clave},{marca},{cantidad},{precio},{sabor},{gramos},{tipo}")
 
+def eliminarProducto(lista):
+    clave = int(input('ingrese la clave del producto que desea eliminar'))
+    lista.pop(clave-1)
+    for i in range(len(lista)):
+        lista[i].clave = i+1
+    actualizarDatos(lista)
+
 def crearAdmin():
     nombre = input("Ingrese el nombre del nuevo administrador: ")
     contraseña = input("Ingrese su contraseña: ")
     nuevoAdmin = Administrador(nombre, contraseña)
     nuevoAdmin.nuevoAdmin()
 
-def iniciarSesion():
+def iniciarSesion(lista):
     usuario = input("Ingrese su usuario: ")
     contraseña = input("Ingrese su contraseña: ")
     admin = Administrador(usuario, contraseña)
@@ -67,6 +79,8 @@ def iniciarSesion():
         print("\n")
         if opcion == 1:
             añadirProducto()
+        elif opcion == 2:
+            eliminarProducto(lista)
         elif opcion == 4:
             crearAdmin()
         elif opcion == 5:
