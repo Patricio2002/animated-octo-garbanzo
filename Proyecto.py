@@ -10,15 +10,16 @@ def dispensando():
     print("Dispensando...")
     
     for i in range(1, 5):
-        #print("[" + "|" * i + "]")
+       
         time.sleep(0.5)
         
     #
     print()
     print("Recoja su producto, gracias por comprar :)\n")
 
+#Comentar todas las clases, funciones y métodos
         
-def mostrarProductos():
+def mostrarProductos():         #Mostrar productos del tipo
     pass
 
 def seleccionarProducto(lista):
@@ -38,10 +39,10 @@ def seleccionarProducto(lista):
         dispensando()
 
 
-def productosTipo():
+def productosTipo():        #Mostrar tipo de productos por tipo
     pass
 
-def infoProducto(lista):
+def infoProducto(lista):            
     try:
         clave = int(input("Ingrese la clave del producto del que desa saber mas información: "))
         verifClave(lista,clave)
@@ -58,7 +59,7 @@ def infoProducto(lista):
 
  
 
-def main():
+def main():     #Verificar que se ingrese el monto, monto correcto de cambio y regreso de cambio en el caso
     lista = maquina.mostrarProductos()   
     while 1:
         try: 
@@ -67,7 +68,7 @@ def main():
   2. Ver informacion de un producto\n\
   3. Modo Administrador\n\
   4. Salir\n"))
-        except ValueError: 
+        except ValueError:          #Quinta opcion para mostrar productos por tipo
             print("\nIntroduzca solo numeros!!!\n")
         else:    
             if opcion == 1:
