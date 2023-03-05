@@ -28,25 +28,23 @@ def seleccionarProducto(lista): #le resta uno a la cantidad que se tiene de un p
         print("\nIngrese una clave conocida\n")
     else: 
         clave = int(clave)-1
-        monto = int(input(("Introduzca el monto: ")))       #Se verifica la cantidad del monto
-        if lista[clave].retornarPrecio() == monto:
-            lista[clave].comprar()
-            actualizarDatos(lista)
-            dispensando()            
-        elif monto > lista[clave].retornarPrecio(): #Si excede, regresa el cambio
-            print("Entregando cambio")
-            print("Recoja su cambio: " + str(monto - lista[clave].retornarPrecio()))
-            lista[clave].comprar()
-            actualizarDatos(lista)
-            dispensando() 
-        elif monto < lista[clave].retornarPrecio():
-            print()
-            print("Monto insuficiente :(!!!")
-            print()
+        if(int(lista[clave].cantidad)>0):
+            monto = int(input(("Introduzca el monto: ")))       #Se verifica la cantidad del monto
+            if lista[clave].retornarPrecio() == monto:
+                lista[clave].comprar()
+                actualizarDatos(lista)
+                dispensando()            
+            elif monto > lista[clave].retornarPrecio(): #Si excede, regresa el cambio
+                print("Su cambio: " + str(monto - lista[clave].retornarPrecio()))
+                lista[clave].comprar()
+                actualizarDatos(lista)
+                dispensando() 
+            elif monto < lista[clave].retornarPrecio():
+                print("Monto insuficiente :(")
+                print()
+        else:
+            print('Producto sin existencia')
             
-       
-
-
 def productosTipo(lista):
     try:
         tipo = int(input('Ingrese el tipo de productos que desee ver: \n1. Botanas\n2. Bebida\n3. Dulces\n'))
@@ -82,9 +80,9 @@ def infoProducto(lista): #muestra la información de un solo producto
 
  
 
-def main():     #Verificar que se ingrese el monto, monto correcto de cambio y regreso de cambio en el caso
-    lista = maquina.mostrarProductos()   
+def main():     #Verificar que se ingrese el monto, monto correcto de cambio y regreso de cambio en el caso   
     while 1:
+        lista = maquina.mostrarProductos()
         try: 
             opcion = int(input("¿Qué es lo que desea hacer?\n\
   1. Seleccionar producto\n\
