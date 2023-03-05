@@ -10,12 +10,10 @@ def dispensando(): #envia mensajito al comprar el producto
     
     for i in range(1, 5):
         time.sleep(0.5)
-        
     
     print()
     print("Recoja su producto, gracias por comprar :)\n")
 
-#Comentar todas las clases, funciones y métodos
         
 
 def seleccionarProducto(lista): #le resta uno a la cantidad que se tiene de un producto para simular la compra
@@ -36,12 +34,14 @@ def seleccionarProducto(lista): #le resta uno a la cantidad que se tiene de un p
             actualizarDatos(lista)
             dispensando()            
         elif monto > lista[clave].retornarPrecio(): #Si excede, regresa el cambio
-            print("Su cambio: " + str(monto - lista[clave].retornarPrecio()))
+            print("Entregando cambio")
+            print("Recoja su cambio: " + str(monto - lista[clave].retornarPrecio()))
             lista[clave].comprar()
             actualizarDatos(lista)
             dispensando() 
         elif monto < lista[clave].retornarPrecio():
-            print("Monto insuficiente :(")
+            print()
+            print("Monto insuficiente :(!!!")
             print()
             
        
