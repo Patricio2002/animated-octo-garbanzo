@@ -20,7 +20,7 @@ class MaquinaExpendedora():
                 lista.append(globals()[clase](linea2[0], linea2[1], linea2[2], linea2[3],linea2[4],linea2[5]))
                 i+=1
 
-        print("\n\n")
+        print("\n")
         return lista  
     def actualizarCSV(self, lista):
         with open('productos.csv', "w") as f:
