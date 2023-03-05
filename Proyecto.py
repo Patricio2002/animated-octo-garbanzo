@@ -81,4 +81,3 @@ def main():     #Verificar que se ingrese el monto, monto correcto de cambio y r
                 break
 
 main()
-

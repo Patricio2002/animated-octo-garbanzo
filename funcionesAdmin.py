@@ -130,6 +130,9 @@ def eliminarProducto(lista):
     except ValueError: 
             print("\nIntroduzca solo numeros!!!")
     else:
+        while validarCantidades(clave)==False or clave>=len(lista)+2:
+                 clave= int(input("Ingrese clave existente: "))
+                 continue
         lista.pop(clave-1)
         for i in range(len(lista)):
             lista[i].clave = i+1
