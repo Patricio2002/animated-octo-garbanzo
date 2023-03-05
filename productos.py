@@ -13,7 +13,10 @@ class MaquinaExpendedora():
             i=1
             for linea in f.readlines():
                 linea2 = linea.split(",")
-                print(f"{linea2[0]}.{linea2[1]}: ${linea2[3]}", end="   ")
+                if int(linea2[2]) > 0:
+                    print(f"{linea2[0]}.{linea2[1]}: ${linea2[3]}", end="   ")
+                else:
+                    print(f'{linea2[0]}.sin existencias', end="   ")
                 if i%3 == 0:
                     print("\n")
                 clase = linea2[6].rstrip('\n')
