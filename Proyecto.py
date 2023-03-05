@@ -1,6 +1,5 @@
 from admin import *
 from funcionesAdmin import *
-from funcionesAdmin import iniciarSesion
 import time
 maquina = MaquinaExpendedora()
 from excepciones import *
@@ -99,7 +98,6 @@ def main():     #Verificar que se ingrese el monto, monto correcto de cambio y r
             elif opcion == 5:
                 print("Gracias por haber utilizado la maquina expendedora 'Kunkito'")
                 break
-
 
 main()
 
