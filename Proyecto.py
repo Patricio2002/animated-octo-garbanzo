@@ -9,17 +9,14 @@ def dispensando():
     print("Dispensando...")
     
     for i in range(1, 5):
-       
         time.sleep(0.5)
         
-    #
+    
     print()
     print("Recoja su producto, gracias por comprar :)\n")
 
 #Comentar todas las clases, funciones y métodos
         
-def mostrarProductos():         #Mostrar productos del tipo
-    pass
 
 def seleccionarProducto(lista):
     try:
@@ -33,12 +30,25 @@ def seleccionarProducto(lista):
         print("\nIngrese una clave conocida\n")
     else: 
         clave = int(clave)-1
-        lista[clave].comprar()
-        actualizarDatos(lista)
-        dispensando()
+        monto = int(input(("Introduzca el monto: ")))       #Se verifica la cantidad del monto
+        if lista[clave].retornarPrecio() == monto:
+            lista[clave].comprar()
+            actualizarDatos(lista)
+            dispensando()            
+        elif monto > lista[clave].retornarPrecio(): #Si excede, regresa el cambio
+            print("Su cambio: " + str(monto - lista[clave].retornarPrecio()))
+            lista[clave].comprar()
+            actualizarDatos(lista)
+            dispensando() 
+        elif monto < lista[clave].retornarPrecio():
+            print("Monto insuficiente :(")
+            print()
+            
+       
 
 
 def productosTipo():        #Mostrar tipo de productos por tipo
+
     pass
 
 def infoProducto(lista):            
@@ -64,19 +74,24 @@ def main():     #Verificar que se ingrese el monto, monto correcto de cambio y r
         try: 
             opcion = int(input("¿Qué es lo que desea hacer?\n\
   1. Seleccionar producto\n\
-  2. Ver informacion de un producto\n\
-  3. Modo Administrador\n\
-  4. Salir\n"))
+  2. Mirar productos por tipo\n\
+  3. Ver informacion de un producto\n\
+  4. Modo Administrador\n\
+  5. Salir\n"))
         except ValueError:          #Quinta opcion para mostrar productos por tipo
             print("\nIntroduzca solo numeros!!!\n")
         else:    
             if opcion == 1:
                 seleccionarProducto(lista)
             elif opcion == 2:
-                infoProducto(lista)
+                
+             maquina.productoBotana()
+                
             elif opcion == 3:
-                iniciarSesion(lista)
+                infoProducto(lista)
             elif opcion == 4:
+                iniciarSesion(lista)
+            elif opcion == 5:
                 print("Gracias por haber utilizado la maquina expendedora 'Kunkito'")
                 break
 
