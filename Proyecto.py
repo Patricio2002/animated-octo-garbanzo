@@ -4,7 +4,10 @@ import time
 maquina = MaquinaExpendedora()
 from excepciones import *
 
-def dispensando(): #envia mensajito al comprar el producto
+def dispensando() -> str: 
+    """
+    Esta función simula el momento en que se dispensa el producto.
+    """ 
 
     print("Dispensando...")
     
@@ -16,7 +19,11 @@ def dispensando(): #envia mensajito al comprar el producto
 
         
 
-def seleccionarProducto(lista): #le resta uno a la cantidad que se tiene de un producto para simular la compra
+def seleccionarProducto(lista: list) -> None: #le resta uno a la cantidad que se tiene de un producto para simular la compra
+    """
+     Esta función simula la compra del producto, restando una unidad a la cantidad de productos\n
+     que se encuentren en el archivo "productos.csv". Esto se puede ver visualmente.
+    """ 
     try:
         clave = int(input("Ingrese la clave del producto que desea comprar: "))
         verifClave(lista,clave)
@@ -45,7 +52,10 @@ def seleccionarProducto(lista): #le resta uno a la cantidad que se tiene de un p
         else:
             print('Producto sin existencia')
             
-def productosTipo(lista):
+def productosTipo(lista: list) -> str:
+    """
+      Esta función muestra los productos de un solo tipo, sean Bebidas, Botanas o Dulces.
+    """ 
     try:
         tipo = int(input('Ingrese el tipo de productos que desee ver: \n1. Botanas\n2. Bebida\n3. Dulces\n'))
         if tipo == 1:
@@ -63,7 +73,10 @@ def productosTipo(lista):
     except ValueError:
         print("Ingrese solo valores válidos")  
 
-def infoProducto(lista): #muestra la información de un solo producto
+def infoProducto(lista: list) -> str: #muestra la información de un solo producto
+    """
+      Esta función muestra la información del producto que se requiera saber.
+    """ 
     try:
         clave = int(input("Ingrese la clave del producto del que desa saber mas información: "))
         verifClave(lista,clave)
@@ -80,7 +93,10 @@ def infoProducto(lista): #muestra la información de un solo producto
 
  
 
-def main():     #Verificar que se ingrese el monto, monto correcto de cambio y regreso de cambio en el caso   
+def main():    
+    """
+     Esta es la función principal.
+        """  
     while 1:
         lista = maquina.mostrarProductos()
         try: 

@@ -4,22 +4,36 @@ from excepciones import *
 
 maquina = MaquinaExpendedora()
 product = []
+"""
+En este archivo se encuentran las funciones encargadas de manejar \n
+las operaciones que podrá realizar un administrador de la máquina expendedora.
+ """
 
-def validarCantidades (cantidades):
+def validarCantidades (cantidades: int) -> bool:
+    """
+    Esta función valida que se introduzcan cantidades de productos validas, o sea,\n
+    mayores a cero.
+    """
     if cantidades<=0:
         print("Ingrese cantidad valida")
         return False
     else:
         return True
 
-def actualizarDatos(lista):
+def actualizarDatos(lista: list) -> None:
+    """
+    Esta función actualiza los datos que se contengan en el archvio ".csv".
+    """
     act = []
     for i in range(len(lista)):
         act.append(lista[i].retornarInfo())
     maquina.actualizarCSV(act)
 
-#función que lee todos los datos nuevos del producto y lo sube al csv
-def añadirProducto(lista):
+def añadirProducto(lista: list) -> None:
+    """
+    Esta función lee los datos nuevos ingresados del producto y posteriormente\n
+    son añadidos al archivo ".csv". En esta función también se hace manejo de exepciones. 
+    """
     global product
     try: 
         tipo = int(input("¿Qué clase de producto va a ingresar?\t1.Botana\t2.Bebida\t3.Dulce: \n"))
@@ -118,8 +132,11 @@ def añadirProducto(lista):
     
 
 
-#función que modifica un valor de un atributo y lo envía a la función actualizarDatos
-def modificarProducto(lista):
+def modificarProducto(lista:list) -> None:
+    """
+    Esta función modifica un atributo (sea sabor, costo, gramos, etc) de un producto \n
+    y posteriormente actualiza la información del archivo ".csv".
+    """
     try:
         clave = int(input('Ingrese la clave del producto que desea modificar: '))
     except ValueError: 
@@ -204,7 +221,10 @@ def modificarProducto(lista):
 
         actualizarDatos(lista)
         
-def eliminarProducto(lista):
+def eliminarProducto(lista: list) -> None:
+    """
+    La función elimina un producto de los presentes en el archivo ".csv".
+    """
     try: 
         clave = int(input('Ingrese la clave del producto que desea eliminar'))
     except ValueError: 
@@ -218,8 +238,11 @@ def eliminarProducto(lista):
             lista[i].clave = i+1
         actualizarDatos(lista)
 
-#función que genera un nuevo admin en administradores.csv
-def crearAdmin():
+
+def crearAdmin()-> None:
+    """
+    Esta función permite generar un nuevo administrador. Añadiendolo al archivo ".csv".
+    """
     nombre = input("Ingrese el nombre del nuevo administrador: ")
     contraseña = input("Ingrese su contraseña: ")
     if len(nombre) != 0 or len(contraseña) != 0:
@@ -228,8 +251,12 @@ def crearAdmin():
     else:
         'No se puede ingresar cadenas vacias'
 
-#función que valida si existe la cuenta y contraseña del admin que desea ingresar
-def iniciarSesion(lista):
+
+def iniciarSesion(lista: list) -> None:
+    """
+    Esta función valida si el usuario y contraseña introducidos existen en el archivo\n
+    donde se encuentran los administradores.
+    """
     usuario = input("Ingrese su usuario: ")
     contraseña = input("Ingrese su contraseña: ")
     admin = Administrador(usuario, contraseña)
