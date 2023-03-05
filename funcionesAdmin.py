@@ -18,7 +18,7 @@ def actualizarDatos(lista):
     maquina.actualizarCSV(act)
 
 #función que lee todos los datos nuevos del producto y lo sube al csv
-def añadirProducto():
+def añadirProducto(lista):
     global product
     tipo = input("¿Qué clase de producto va a ingresar?\t1.Botana\t2.Bebida\t3.Dulce: \n")
     if int(tipo) == 1 or int(tipo) == 2 or int(tipo) == 3:
@@ -74,6 +74,7 @@ def añadirProducto():
         print("Ingrese valores validos")
         return 0
     
+    lista.append(globals()[tipo](len(lista)+2,marca,cantidad,precio,sabor,tipo))
     with open("productos.csv", "r") as f:
         for linea in f.readlines():
             linea.split(",")
@@ -135,6 +136,9 @@ def eliminarProducto(lista):
     except ValueError: 
             print("\nIntroduzca solo numeros!!!")
     else:
+        while validarCantidades(clave)==False or clave>=len(lista)+2:
+                 clave= int(input("Ingrese clave existente: "))
+                 continue
         lista.pop(clave-1)
         for i in range(len(lista)):
             lista[i].clave = i+1
@@ -169,7 +173,7 @@ def iniciarSesion(lista):
                 print("\nIntroduzca solo numeros!!!")
             else:
                 if opcion == 1:
-                    añadirProducto()
+                    añadirProducto(lista)
                 elif opcion == 2:
                     eliminarProducto(lista)
                 elif opcion == 3:
