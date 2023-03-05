@@ -17,10 +17,6 @@ def dispensando():
 
 #Comentar todas las clases, funciones y métodos
         
-def monto(dinero, clave):
-    
-
-    pass
 
 def seleccionarProducto(lista):
     try:
