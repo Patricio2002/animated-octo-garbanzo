@@ -4,12 +4,14 @@ from admin import Administrador
 maquina = MaquinaExpendedora()
 product = []
 
+#Esta función extrae el valor de los atributos de la clase lista y los actualiza en el csv
 def actualizarDatos(lista):
     act = []
     for i in range(len(lista)):
         act.append(lista[i].retornarInfo())
     maquina.actualizarCSV(act)
 
+#función que lee todos los datos nuevos del producto y lo sube al csv
 def añadirProducto():
     global product
     tipo = input("¿Que clase de producto va a ingresar?\t1.botana\t2.bebida\t3.dulce: ")
@@ -30,10 +32,13 @@ def añadirProducto():
             gramos = int(input("Ingrese la cantidad de  gramos que contiene el producto: "))
             sabor = (input("Ingrese el sabor del producto: "))
             while 1:
+                sabor2 = ''
                 anadir=input("¿Desea ingresar otro sabor?\n1.Si\n2.No\n")
                 if int(anadir) == 1:
-                    anadir = anadir + ". " +(input("Ingrese el sabor del producto: "))
+                    sabor = (input("Ingrese el sabor del producto: "))
+                    sabor2 = anadir + ". " + sabor
                 elif int(anadir) == 2:
+                    sabor = sabor2
                     break
                 else:
                     print("Ingrese un valor valido")
@@ -46,8 +51,9 @@ def añadirProducto():
 
         clave=int(linea[0])+1
     with open('productos.csv', 'a+') as f:
-        f.write(f"\n{clave},{marca},{cantidad},{precio},{sabor},{gramos},{tipo}")
+        f.write(f"{clave},{marca},{cantidad},{precio},{sabor},{gramos},{tipo}")
 
+#función que modifica un valor de un atributo y lo envía a la función actualizarDatos
 def modificarProducto(lista):
     try:
         clave = int(input('ingrese la clave del producto que desea modificar'))
@@ -77,7 +83,7 @@ def modificarProducto(lista):
             lista[clave].sabor = nuevoSabor
         actualizarDatos(lista)
         
-
+#función que elimina un producto de lista para luego actualizarlo
 def eliminarProducto(lista):
     try: 
         clave = int(input('ingrese la clave del producto que desea eliminar'))
@@ -89,6 +95,7 @@ def eliminarProducto(lista):
             lista[i].clave = i+1
         actualizarDatos(lista)
 
+#función que genera un nuevo admin en administradores.csv
 def crearAdmin():
     nombre = input("Ingrese el nombre del nuevo administrador: ")
     contraseña = input("Ingrese su contraseña: ")
@@ -96,13 +103,14 @@ def crearAdmin():
         nuevoAdmin = Administrador(nombre, contraseña)
         nuevoAdmin.nuevoAdmin()
 
+#función que valida si existe la cuenta y contraseña del admin que desea ingresar
 def iniciarSesion(lista):
     usuario = input("Ingrese su usuario: ")
     contraseña = input("Ingrese su contraseña: ")
     admin = Administrador(usuario, contraseña)
     validar = admin.validacion()
     print("\n")
-    
+    #en caso de que exista, se despliega el menú del admin
     if validar == 1:
         while(1):
             try:

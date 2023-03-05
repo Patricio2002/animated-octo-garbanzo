@@ -1,10 +1,11 @@
 #Ideas jeje
 listaClases = []
 
-
+#clase que interactua directamente en el menú haciendo de "máquina expendedora"
 class MaquinaExpendedora():
     def __init__(self) -> None:
         pass
+    #se muestran los productos en la terminal con su clave y costo
     def mostrarProductos(self):
         lista = []
         print("\n\t-Maquina expendedora krunkito-\n")
@@ -17,6 +18,7 @@ class MaquinaExpendedora():
                 if i%3 == 0:
                     print("\n")
                 clase = linea2[6].rstrip('\n')
+                #se instancia las clases cuando se leen en el archivo para una mejor manipulación
                 lista.append(globals()[clase](linea2[0], linea2[1], linea2[2], linea2[3],linea2[4],linea2[5]))
                 i+=1
 
