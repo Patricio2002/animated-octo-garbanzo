@@ -11,7 +11,6 @@ class MaquinaExpendedora():
         with open('productos.csv', 'r') as f:
             i=1
             for linea in f.readlines():
-                
                 linea2 = linea.split(",")
                 print(f"{linea2[0]}.{linea2[1]}: ${linea2[3]}", end="   ")
                 if i%3 == 0:
@@ -22,6 +21,21 @@ class MaquinaExpendedora():
 
         print("\n\n")
         return lista  
+    
+    def productoBotana(self):
+        lista = []
+        with open('productos.csv', 'r') as f:
+            i = 1
+            for linea in f.readlines():
+                linea2 = linea.split(",")
+                if linea2[6] == Botana:
+                    print(f"{linea2[0]}.{linea2[1]}: ${linea2[3]}", end="   ")
+            pass
+
+        
+    def productoBebida(self):
+        pass
+
     def actualizarCSV(self, lista):
         with open('productos.csv', "w") as f:
             for i in lista:
@@ -43,8 +57,8 @@ cantidad en existencia:{self.cantidad}")
         with open('productos.csv', 'a+') as f:
             f.write(f"\n{self.clave},{self.nombre},{self.cantidad},{self.costo}")
     
-    def retornarInfo(self):
-        pass
+    def retornarPrecio(self):
+        return int(self.costo)
     
     def comprar(self):
         self.cantidad = int(self.cantidad)-1
@@ -127,13 +141,13 @@ producto: {self._tipo}\n\
 nombre: {self.nombre}\n\
 cantidad en existencia:{self.cantidad}\n\
 costo:{self.costo}\n\
-sabor(es): {self.sabor}\n\
+sabor(es): {self.sabores}\n\
 gramos: {self.gramos}")
 
     def añadirProducto(self):
         self.añadirProductoGen()
         with open('productos.csv', 'a+') as f:
-            f.write(f",{self.sabor},{self.gramos},{self._tipo}")
+            f.write(f",{self.sabores},{self.gramos},{self._tipo}")
 
     def retornarInfo(self):
-        return f"{self.clave},{self.nombre},{self.cantidad},{self.costo},{self.sabor},{self.gramos},{self._tipo}"
+        return f"{self.clave},{self.nombre},{self.cantidad},{self.costo},{self.sabores},{self.gramos},{self._tipo}"
