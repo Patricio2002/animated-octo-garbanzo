@@ -1,6 +1,5 @@
 from admin import *
 from funcionesAdmin import *
-from funcionesAdmin import iniciarSesion
 import time
 maquina = MaquinaExpendedora()
 from excepciones import *
@@ -10,16 +9,14 @@ def dispensando(): #envia mensajito al comprar el producto
     print("Dispensando...")
     
     for i in range(1, 5):
-        #print("[" + "|" * i + "]")
         time.sleep(0.5)
         
-    #
+    
     print()
     print("Recoja su producto, gracias por comprar :)\n")
 
+#Comentar todas las clases, funciones y métodos
         
-def mostrarProductos():
-    pass
 
 def seleccionarProducto(lista): #le resta uno a la cantidad que se tiene de un producto para simular la compra
     try:
@@ -33,9 +30,21 @@ def seleccionarProducto(lista): #le resta uno a la cantidad que se tiene de un p
         print("\nIngrese una clave conocida\n")
     else: 
         clave = int(clave)-1
-        lista[clave].comprar()
-        actualizarDatos(lista)
-        dispensando()
+        monto = int(input(("Introduzca el monto: ")))       #Se verifica la cantidad del monto
+        if lista[clave].retornarPrecio() == monto:
+            lista[clave].comprar()
+            actualizarDatos(lista)
+            dispensando()            
+        elif monto > lista[clave].retornarPrecio(): #Si excede, regresa el cambio
+            print("Su cambio: " + str(monto - lista[clave].retornarPrecio()))
+            lista[clave].comprar()
+            actualizarDatos(lista)
+            dispensando() 
+        elif monto < lista[clave].retornarPrecio():
+            print("Monto insuficiente :(")
+            print()
+            
+       
 
 
 def productosTipo(lista):
@@ -73,31 +82,30 @@ def infoProducto(lista): #muestra la información de un solo producto
 
  
 
-def main():
+def main():     #Verificar que se ingrese el monto, monto correcto de cambio y regreso de cambio en el caso
     lista = maquina.mostrarProductos()   
     while 1:
         try: 
             opcion = int(input("¿Qué es lo que desea hacer?\n\
   1. Seleccionar producto\n\
-  2. Ver informacion de un producto\n\
-  3. Ver todos los los productos de un tipo\n\
+  2. Mirar productos por tipo\n\
+  3. Ver informacion de un producto\n\
   4. Modo Administrador\n\
   5. Salir\n"))
-        except ValueError: 
+        except ValueError:          #Quinta opcion para mostrar productos por tipo
             print("\nIntroduzca solo numeros!!!\n")
         else:    
             if opcion == 1:
                 seleccionarProducto(lista)
-            elif opcion == 2:
-                infoProducto(lista)
+            elif opcion == 2:       
+             productosTipo(lista)
             elif opcion == 3:
-                productosTipo(lista)
+                infoProducto(lista)
             elif opcion == 4:
                 iniciarSesion(lista)
             elif opcion == 5:
                 print("Gracias por haber utilizado la maquina expendedora 'Kunkito'")
                 break
-
 
 main()
 
