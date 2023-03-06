@@ -106,7 +106,7 @@ def main():
   3. Ver informacion de un producto\n\
   4. Modo Administrador\n\
   5. Salir\n"))
-        except ValueError:          #Quinta opcion para mostrar productos por tipo
+        except ValueError:          #verifica que solo ingresen números
             print("\nIntroduzca solo numeros!!!\n")
         else:    
             if opcion == 1:
