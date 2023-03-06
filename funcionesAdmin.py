@@ -15,7 +15,7 @@ def validarCantidades (cantidades: int) -> bool:
     mayores a cero.
     """
     if cantidades<=0:
-        print("Ingrese cantidad valida")
+        print("Ingrese valor valido")
         return False
     else:
         return True
@@ -139,6 +139,9 @@ def modificarProducto(lista:list) -> None:
     """
     try:
         clave = int(input('Ingrese la clave del producto que desea modificar: '))
+        while validarCantidades(clave)==False or clave>=len(lista)+2:
+                        clave= int(input("Ingrese la clave del producto que desea modificar: "))
+                        continue
     except ValueError: 
             print("\nIntroduzca solo numeros!!!")
     else:

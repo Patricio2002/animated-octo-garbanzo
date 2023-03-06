@@ -1,8 +1,9 @@
 from admin import *
 from funcionesAdmin import *
 import time
-maquina = MaquinaExpendedora()
 from excepciones import *
+
+maquina = MaquinaExpendedora()
 
 def dispensando() -> str: 
     """
@@ -26,6 +27,9 @@ def seleccionarProducto(lista: list) -> None: #le resta uno a la cantidad que se
     """ 
     try:
         clave = int(input("Ingrese la clave del producto que desea comprar: "))
+        while validarCantidades(clave)==False:
+                    clave= int(input("Ingrese la clave del producto que desea comprar:"))
+                    continue
         verifClave(lista,clave)
     except ValueError: 
             print("\nIntroduzca solo numeros!!!\n")
@@ -58,6 +62,10 @@ def productosTipo(lista: list) -> str:
     """ 
     try:
         tipo = int(input('Ingrese el tipo de productos que desee ver: \n1. Botanas\n2. Bebida\n3. Dulces\n'))
+        while validarCantidades(tipo)==False or tipo>=3:
+                print("Ingrese valor valido")
+                tipo= int(input("Ingrese el tipo de productos que desee ver: \n1. Botanas\n2. Bebida\n3. Dulces\n"))
+                continue
         if tipo == 1:
             for i in range(len(lista)):
                 if lista[i]._tipo == 'Botana':
@@ -79,6 +87,10 @@ def infoProducto(lista: list) -> str: #muestra la información de un solo produc
     """ 
     try:
         clave = int(input("Ingrese la clave del producto del que desa saber mas información: "))
+        while validarCantidades(clave)==False or clave>=len(lista)+2:
+                print("Ingrese valor valido")
+                clave= int(input("Ingrese la clave del producto del que desa saber mas información: "))
+                continue
         verifClave(lista,clave)
     except ValueError: 
             print("\nIntroduzca solo numeros!!!\n")
@@ -106,6 +118,14 @@ def main():
   3. Ver informacion de un producto\n\
   4. Modo Administrador\n\
   5. Salir\n"))
+            while validarCantidades(opcion)==False:
+                    opcion= int(input("¿Qué es lo que desea hacer?\n\
+  1. Seleccionar producto\n\
+  2. Mirar productos por tipo\n\
+  3. Ver informacion de un producto\n\
+  4. Modo Administrador\n\
+  5. Salir\n"))
+                    continue
         except ValueError:          #verifica que solo ingresen números
             print("\nIntroduzca solo numeros!!!\n")
         else:    
